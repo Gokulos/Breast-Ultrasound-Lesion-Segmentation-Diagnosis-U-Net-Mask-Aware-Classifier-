@@ -1,185 +1,95 @@
-## Breast Ultrasound Lesion Segmentation + Diagnosis Classification (Two-Stage Deep Learning)
+# Breast Ultrasound Lesion Segmentation + Diagnosis (U-Net + Mask-Aware Classifier)
 
-This project implements a two-stage deep learning pipeline on the Breast Ultrasound Images Dataset (BUSI):
+A two-stage deep learning pipeline for **breast ultrasound analysis** using the BUSI dataset.
 
-1️⃣ U-Net segmentation to localize breast lesions
-2️⃣ Mask-aware classifier to predict normal / benign / malignant
+This project combines:
 
-The model first identifies the lesion region and then performs diagnosis using both the image and predicted mask, improving interpretability compared to direct classification.
+1. **U-Net segmentation** → predicts lesion mask, with a
+2. **Mask-aware classifier** → predicts diagnosis (**normal / benign / malignant**) using the predicted mask
 
-⚠️ Disclaimer: This project is for research and educational purposes only. It is not a medical diagnostic tool.
+The system improves explainability by showing **where the model is looking** before predicting the class.
 
-🚀 Project Motivation
+---
 
-Most student projects perform either segmentation or classification.
-This project combines both to mimic a more realistic clinical AI workflow:
+## Demo/Results
 
-Detect lesion region (Where?)
-
-Predict diagnosis (What?)
-
-This improves:
-
-interpretability
-
-robustness
-
-alignment with real medical AI systems
-
-## Architecture Overview
-Stage 1 — Lesion Segmentation
-
-Model: U-Net
-
-Input: ultrasound image
-
-Output: binary lesion mask
-
-Stage 2 — Mask-Aware Diagnosis Classification
-
-Model: CNN classifier
-
-Input: 2-channel tensor
-
-channel 1 → ultrasound image
-
-channel 2 → predicted mask
-
-Output: normal / benign / malignant
 
 ## Dataset
 
-Breast Ultrasound Images Dataset (BUSI)
+**Breast Ultrasound Images Dataset (BUSI)**  
 https://www.kaggle.com/datasets/aryashah2k/breast-ultrasound-images-dataset
 
-Dataset contains:
+Dataset structure:
+├── DATASET_ROOT/
+├── benign/
+├── ├── image.png
+├── ├── image_mask.png
+├── malignant/
+├─ ─├── image.png
+├── ├── image_mask.png
+├── normal/
+├── ├── image.png
 
-Ultrasound images
 
-Corresponding lesion masks (*_mask.png)
+Notes:
+- Masks exist mostly for benign and malignant
+- Normal class is treated as **empty mask**
 
-Class labels: normal / benign / malignant
+---
 
-Important preprocessing details:
 
-Images resized and normalized
+## Repository Structure
+├── Breast_Cancer_Detection_Deep_Learning.ipynb
+├── src/
+│ ├── data.py
+│ ├── unet_model.py
+│ ├── classifier_model.py
+│ ├── train_unet.py
+│ ├── train_classifier.py
+│ └── infer.py
+├── models/
+├── reports/
+│ └── figures/
+├── requirements.txt
+└── README.md
 
-Masks binarized
 
-Normal samples assigned empty masks
-
-Segmentation trained only on images with real masks
+---
 
 ## Installation
-git clone <your_repo_url>
-cd breast-ultrasound-ai
 
-python -m venv .venv
-source .venv/bin/activate      # Linux / Mac
-# .venv\Scripts\activate       # Windows
+### 1. Clone repository
+git clone https://github.com/Gokulos/Breast_Cancer_Detection_Deep_Learning.git
+cd Breast_Cancer_Detection_Deep_Learning
 
+### 2.Create a Virtual Environment(Optional)
+python -m venv busi
+source busi/bin/activate        # Linux / Mac
+busi\Scripts\activate         # Windows
+
+### 3. Install Requirements
 pip install -r requirements.txt
-🧪 Training
-1️⃣ Train U-Net (Segmentation)
-python src/train_unet.py
+
+
+## Method Overview
+
+### Stage 1 — Segmentation (U-Net)
+
+- Encoder–decoder CNN with skip connections
+- Predicts binary lesion mask
+- Trained using **BCE + Dice loss**
+- Evaluated using Dice coefficient
+
+### Stage 2 — Mask-Aware Classification
+
+Classifier input:
+- Channel 1 → original ultrasound image
+- Channel 2 → predicted lesion mask
 
 Outputs:
+- Normal
+- Benign
+- Malignant
 
-models/unet.h5
+---
 
-Metrics:
-
-Dice coefficient
-
-BCE + Dice loss
-
-2️⃣ Train Classifier (Diagnosis)
-python src/train_classifier.py
-
-Outputs:
-
-models/classifier.h5
-
-Metrics:
-
-Accuracy
-
-F1-score per class (recommended)
-
-🔎 Inference
-python src/infer.py --image path/to/image.png
-
-Output:
-
-predicted mask
-
-predicted class
-
-class probabilities
-
-🖥️ GUI Demo (optional)
-python src/gui_app.py
-
-Displays:
-
-input image
-
-predicted lesion mask
-
-overlay visualization
-
-predicted diagnosis
-
-📊 Results (add your numbers here)
-Task	Metric	Score
-Segmentation	Dice	TBD
-Classification	Accuracy	TBD
-Malignant Detection	Recall	TBD
-⭐ Key Learning Points
-
-Multi-stage medical AI pipelines
-
-Segmentation-guided classification
-
-Handling missing masks (normal class)
-
-Avoiding data leakage when generating predicted masks
-
-Interpretable deep learning design
-
-## Future Improvements
-
-Dice + Focal hybrid loss
-
-Attention U-Net
-
-Uncertainty estimation
-
-Grad-CAM explainability
-
-Clinical risk calibration
-
-Multi-view ultrasound fusion
-
-## References
-
-Segmentation
-
-Ronneberger et al., U-Net: Convolutional Networks for Biomedical Image Segmentation, MICCAI 2015
-https://arxiv.org/abs/1505.04597
-
-Isensee et al., nnU-Net: Self-configuring method for biomedical segmentation
-https://arxiv.org/abs/1809.10486
-
-Medical Ultrasound AI
-
-Yap et al., Automated Breast Ultrasound Lesion Detection Using Deep Learning
-https://ieeexplore.ieee.org/document/8373050
-
-BUSI dataset paper
-Al-Dhabyani et al., Dataset of breast ultrasound images
-https://doi.org/10.1016/j.dib.2019.104863
-
-Explainability & Multi-Stage Medical AI
-
-Litjens et al., A Survey on Deep Learning in Medical Image Analysis
