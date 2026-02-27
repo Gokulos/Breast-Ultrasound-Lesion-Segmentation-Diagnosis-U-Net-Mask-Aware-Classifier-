@@ -11,9 +11,9 @@ This project combines:
 
 ## Demo/Results
 
-![Demo](images/Timeline 1.gif)
-![Results](images/New Project.png)
-![Results](images/Screenshot from 2026-02-27 00-22-21.png)
+![Demo](Images/Timeline 1.gif)
+![Results](Images/New Project.png)
+![Results](Images/Screenshot from 2026-02-27 00-22-21.png)
 
 ## Dataset
 
