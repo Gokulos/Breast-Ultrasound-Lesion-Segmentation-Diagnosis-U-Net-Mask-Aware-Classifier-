@@ -74,16 +74,18 @@ git clone https://github.com/Gokulos/Breast_Cancer_Detection_Deep_Learning.git
 cd Breast_Cancer_Detection_Deep_Learning
 
 ### 2.Create a Virtual Environment(Optional)
+```
 python -m venv busi
 source busi/bin/activate        # Linux / Mac
 busi\Scripts\activate         # Windows
-
+```
 ### 3. Install Requirements
+```
 pip install -r requirements.txt
-
+```
 
 ## Method Overview
-
+```
 ### Stage 1 — Segmentation (U-Net)
 
 - Encoder–decoder CNN with skip connections
@@ -101,6 +103,6 @@ Outputs:
 - Normal
 - Benign
 - Malignant
-
+```
 ---
 
