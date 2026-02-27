@@ -12,7 +12,7 @@ This project combines:
 ## Demo
 ![Demo](Images/Demo_1.gif)
 
-## Classification Results
+## Model Results
 ![Results](Images/Results_2.png)
 
 ## Dataset
