@@ -9,9 +9,10 @@ This project combines:
 
 ---
 
-## Demo/Results,
-
+## Demo
 ![Demo](Images/Demo_1.gif)
+
+## Classification Results
 ![Results](Images/Results_2.png)
 
 ## Dataset
