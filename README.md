@@ -70,9 +70,10 @@ Breast_Cancer_Detection_Deep_Learning/
 ## Installation
 
 ### 1. Clone repository
-git clone https://github.com/Gokulos/Breast_Cancer_Detection_Deep_Learning.git
-cd Breast_Cancer_Detection_Deep_Learning
-
+```
+git clone https://github.com/Gokulos/Breast-Ultrasound-Lesion-Segmentation-Diagnosis-U-Net-Mask-Aware-Classifier.git
+cd Breast-Ultrasound-Lesion-Segmentation-Diagnosis-U-Net-Mask-Aware-Classifier
+```
 ### 2.Create a Virtual Environment(Optional)
 ```
 python -m venv busi
@@ -81,7 +82,7 @@ busi\Scripts\activate         # Windows
 ```
 ### 3. Install Requirements
 ```
-pip install -r requirements.txt
+pip install -r Requirements.txt
 ```
 
 ## Method Overview
