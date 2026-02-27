@@ -1,11 +1,11 @@
-# Breast Ultrasound Lesion Segmentation + Diagnosis (U-Net + Mask-Aware Classifier)
+# Breast Ultrasound Lesion Segmentation + Diagnosis (U-Net + Classifier)
 
 A two-stage deep learning pipeline for **breast ultrasound analysis** using the BUSI dataset.
 
 This project combines:
 
 1. **U-Net segmentation** → predicts lesion mask, with a
-2. **Mask-aware classifier** → predicts diagnosis (**normal / benign / malignant**) using the predicted mask
+2. **Classifier** → predicts diagnosis (**normal / benign / malignant**) using the predicted mask
 
 ---
 
@@ -86,14 +86,14 @@ pip install -r requirements.txt
 
 ## Method Overview
 ```
-### Stage 1 — Segmentation (U-Net)
+Segmentation (U-Net)
 
 - Encoder–decoder CNN with skip connections
 - Predicts binary lesion mask
 - Trained using **BCE + Dice loss**
 - Evaluated using Dice coefficient
 
-### Stage 2 — Mask-Aware Classification
+Classification
 
 Classifier input:
 - Channel 1 → original ultrasound image
