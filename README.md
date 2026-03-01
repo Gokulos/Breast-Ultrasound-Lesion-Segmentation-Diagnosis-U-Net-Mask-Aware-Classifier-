@@ -12,8 +12,6 @@ This project combines:
 ## Demo
 ![Demo](Images/Demo_1.gif)
 
-## Model Results
-![Results](Images/Results_2.png)
 
 ## Dataset
 
@@ -38,8 +36,12 @@ Notes:
 - Masks exist mostly for benign and malignant
 - Normal class is treated as **empty mask**
 
-## Model Results on Test data:
+## Segmentation Results on Test data:
 ![Results](Images/Results_1.png)
+
+## Classification Model Results
+![Results](Images/Results_2.png)
+
 
 
 ---
